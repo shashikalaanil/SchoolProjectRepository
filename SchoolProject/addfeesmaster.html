@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Add Fees Master</title>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+	<script>
+		$(document).ready(function(){
+			$("#btnadd").click(function(){
+				var academicyear=document.getElementById("txtacademicyear").value;
+				var class1=document.getElementById("ddlclass").value;
+				var category=document.getElementById("ddlcategory").value;
+				var fees=document.getElementById("txtfees").value;
+				
+			     $.ajax({
+			      type: "POST",
+			      url: 'dal_addfeesmaster.php',
+			      data: ({
+			      	param_academicyear:academicyear,
+			      	param_class:class1,
+			      	param_category:category,
+			      	param_fees:fees}),
+			      success: function(data) {
+			       document.getElementById("div1").innerHTML=data;
+			      } 
+			    }); 
+			    });   
+		});
+	</script>
+</head>
+<body>
+	<form method="POST">
+		<table border="1">
+			 <tr>
+				<td>Academic Year</td>
+				<td><input type="text" name="txtacademicyear" id="txtacademicyear"/>
+			</tr>
+			
+			 <tr>
+				<td>Class</td>
+				<td>
+					<select name="ddlclass" id="ddlclass">
+						<option>1</option>
+						<option>2</option>
+						<option>3</option>
+						<option>4</option>
+					</select>
+				</td>
+			</tr>
+			
+			 <tr>
+				<td>Category</td>
+				<td>
+					<select name="ddlcategory" id="ddlcategory">
+						<option>GM</option>
+						<option>2A</option>
+					</select>
+				</td>
+			</tr>
+			
+			 <tr>
+				<td>Total Fees</td>
+				<td><input type="text" name="txtfees" id="txtfees"/>
+			</tr>
+			<tr>
+				<td><input type="button" name="btnadd" id="btnadd" value="submit" />
+			</tr>
+		</table>
+	</form>
+	<div id="div1">
+	</div>
+</body>
+</html>

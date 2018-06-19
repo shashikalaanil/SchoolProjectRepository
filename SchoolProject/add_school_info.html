@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Add School Information</title>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+	<script>
+		$(document).ready(function(){
+			$("#btnadd").click(function(){
+				var schoolname=document.getElementById("txtschoolname").value;
+				var website=document.getElementById("txtwebsite").value;
+				var phone=document.getElementById("txtphone").value;
+				var altphone=document.getElementById("txtaltphone").value;
+				var disecode=document.getElementById("txtdisecode").value;
+				var schoolcode=document.getElementById("txtschoolcode").value;
+				var brcode=document.getElementById("txtbrcode").value;
+				var brname=document.getElementById("txtbrname").value;
+				var clustercode=document.getElementById("txtclustercode").value;
+				var clustername=document.getElementById("txtclustername").value;
+				var medium=document.getElementById("txtmedium").value;
+
+			     $.ajax({
+			      type: "POST",
+			      url: 'dal_schoolinfo.php',
+			      data: ({
+			      	param_schoolname:schoolname,
+			      	param_website:website,
+			      	param_phone:phone,
+			      	param_altphone:altphone,
+			      	param_disecode:disecode,
+			      	param_schoolcode:schoolcode,
+			      	param_brcode:brcode,
+			      	param_brname:brname,
+			      	param_clustercode:clustercode,
+			      	param_clustername:clustername,
+			      	param_medium:medium
+			      }),
+			      success: function(data) {
+			       document.getElementById("div1").innerHTML=data;
+			      } 
+			    }); 
+			    });   
+		});
+	</script>
+</head>
+<body>
+	<form method="POST">
+		<table border="1">
+			 <tr>
+				<td>School Name</td>
+				<td><input type="text" name="txtschoolname" id="txtschoolname"/>
+			</tr>
+			
+			 <tr>
+				<td>Website</td>
+				<td><input type="text" name="txtwebsite" id="txtwebsite"/>
+			</tr>
+			
+			 <tr>
+				<td>Phone</td>
+				<td><input type="number" name="txtphone" id="txtphone"/>
+			</tr>
+			
+			 <tr>
+				<td>Alternate Phone</td>
+				<td><input type="number" name="txtaltphone" id="txtaltphone"/>
+			</tr>
+			<tr>
+				<td>Dise Code</td>
+				<td><input type="text" name="txtdisecode" id="txtdisecode"/>
+			</tr>
+			 <tr>
+				<td>School Code</td>
+				<td><input type="text" name="txtschoolcode" id="txtschoolcode"/>
+			</tr>
+			 <tr>
+				<td>BR Code</td>
+				<td><input type="text" name="txtbrcode" id="txtbrcode"/>
+			</tr>
+			 <tr>
+				<td>BR Name</td>
+				<td><input type="text" name="txtbrname" id="txtbrname"/>
+			</tr>
+			 <tr>
+				<td>Cluster Code</td>
+				<td><input type="text" name="txtclustercode" id="txtclustercode"/>
+			</tr>
+			 <tr>
+				<td>Cluster Name</td>
+				<td><input type="text" name="txtclustername" id="txtclustername"/>
+			</tr>
+			 <tr>
+				<td>Medium</td>
+				<td><input type="text" name="txtmedium" id="txtmedium"/>
+			</tr>
+			
+			<tr>
+				<td><input type="button" name="btnadd" id="btnadd" value="submit" />
+			</tr>
+		</table>
+	</form>
+	<div id="div1">
+	</div>
+</body>
+</html>

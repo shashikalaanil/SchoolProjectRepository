@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+	
+	<script type="text/javascript">
+			$(document).ready(function(){
+
+			     $.ajax({
+			     
+			      url: 'dal_viewuser.php',
+			      datatype: 'json',
+			        success: function(data)          //on recieve of reply
+      				{
+      					var result=JSON.parse(data);
+      					var table_users=document.getElementById("table_users");
+      					for(var i=0;i<result.length; i++)
+      					{
+      						var username=result[i].username;
+      						var password=result[i].password;
+      						var usertype=result[i].usertype;
+      						var name=result[i].name;
+      						var status=result[i].status;
+
+      						username='<td>'+username+'</td>';
+      						password='<td>'+password+'</td>';
+      						usertype='<td>'+usertype+'</td>';
+      						name='<td>'+name+'</td>';
+      						status='<td>'+status+'</td>';
+
+      						var row='<tr>'+username+password+usertype+name+status+'</tr>';
+      						$('#table_users tr:last').after(row);
+      					}
+
+		 			}	
+			     
+			});
+			 });
+	</script>
+</head>
+<body>
+
+	<form method="GET">
+		<h1>Users List</h1>
+		<table border="1" id="table_users">
+			<thead>
+				<tr>
+					<th>Username</th>
+					<th>Password</th>
+					<th>Usertype</th>
+					<th>Name</th>
+					<th>Status</th>
+				</tr>
+			</thead>
+		
+		</table>
+		
+	</form>
+		<a href="addfeesmaster.html">Enter New Fees</a>
+		<a href="">Continue Previous Year</a><br>
+		<a href="">Enter New Fees Details</a>
+</body>
+</html>

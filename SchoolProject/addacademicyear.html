@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Add User</title>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+	<script>
+		$(document).ready(function(){
+			$("#btnadd").click(function(){
+				var academicyear=document.getElementById("txtacademicyear").value;
+				var startdate=document.getElementById("txtstartdate").value;
+				var enddate=document.getElementById("txtenddate").value;
+				
+				 $.ajax({
+			      type: "POST",
+			      url: 'dal_add_academicyear.php',
+			      data: ({
+			      	param_academicyear:academicyear,
+			      	param_startdate:startdate,
+			      	param_enddate:enddate
+			     
+			      	}),
+			      success: function(data) {
+			       document.getElementById("div1").innerHTML=data;
+			      } 
+			    }); 
+			    });   
+		});
+	</script>
+</head>
+<body>
+	<form method="POST">
+		<table border="1">
+			 <tr>
+				<td>Academic Year</td>
+				<td><input type="text" name="txtacademicyear" id="txtacademicyear"/>
+			</tr>
+			
+			 <tr>
+				<td>Start Date</td>
+				<td><input type="calander" name="txtstartdate" id="txtstartdate"/>
+			</tr>
+			
+			 <tr>
+				<td>End Date</td>
+				<td><input type="calander" name="txtenddate" id="txtenddate"/>
+			</tr>
+			
+			 <tr>
+				<td><input type="button" name="btnadd" id="btnadd" value="submit" />
+			</tr>
+		</table>
+	</form>
+	<div id="div1">
+	</div>
+</body>
+</html>

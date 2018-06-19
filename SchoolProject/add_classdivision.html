@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Add User</title>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+	<script>
+		$(document).ready(function(){
+			$("#btnadd").click(function(){
+
+				var class1=document.getElementById("txtclass").value;
+				var divisions=document.getElementById("txtdivisions").value;
+				
+			     $.ajax({
+			      type: "POST",
+			      url: 'dal_addclassdivision.php',
+			      data: ({
+			      	param_class:class1,
+			      	param_divi:divisions
+			      	}),
+			      success: function(data) {
+			       document.getElementById("div1").innerHTML=data;
+			      } 
+			    }); 
+			    });   
+		});
+	</script>
+</head>
+<body>
+	<form method="POST">
+		<table border="1">
+			 <tr>
+				<td>Class</td>
+				<td><input type="text" name="txtclass" id="txtclass"/>
+			</tr>
+			
+			 <tr>
+				<td>Total Divisions</td>
+				<td><input type="number" name="txtdivisions" id="txtdivisions"/>
+			</tr>
+			
+			<tr>
+				<td><input type="button" name="btnadd" id="btnadd" value="submit" />
+			</tr>
+		</table>
+	</form>
+	<div id="div1">
+	</div>
+</body>
+</html>

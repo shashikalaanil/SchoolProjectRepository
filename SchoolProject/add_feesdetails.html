@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Add Fees Details</title>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+	<script>
+		$(document).ready(function(){
+			$("#btnadd").click(function(){
+				var slno=document.getElementById("txtslno").value;
+				var feehead=document.getElementById("txthead").value;
+				var feeamount=document.getElementById("txtamount").value;
+				
+				 $.ajax({
+			      type: "POST",
+			      url: 'dal_addfeesdetails.php',
+			      data: ({
+			      	param_slno:slno,
+			      	param_head:feehead,
+			      	param_amount:feeamount
+			      	}),
+			      success: function(data) {
+			       document.getElementById("div1").innerHTML=data;
+			      } 
+			    }); 
+			    });   
+		});
+	</script>
+</head>
+<body>
+	<form method="POST">
+		<table border="1">
+			 <tr>
+				<td>Fees Slno</td>
+				<td><input type="text" name="txtslno" id="txtslno"/>
+			</tr>
+			
+			 <tr>
+				<td>Fees Head</td>
+				<td><input type="text" name="txthead" id="txthead"/>
+			</tr>
+			
+			 <tr>
+				<td>Fees Amount</td>
+				<td><input type="text" name="txtamount" id="txtamount"/>
+			</tr>
+			
+			<tr>
+				<td><input type="button" name="btnadd" id="btnadd" value="submit" />
+			</tr>
+		</table>
+	</form>
+	<div id="div1">
+	</div>
+</body>
+</html>

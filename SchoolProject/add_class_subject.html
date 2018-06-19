@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Add User</title>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+	<script>
+		$(document).ready(function(){
+			$("#btnadd").click(function(){
+				var username=document.getElementById("txtusername").value;
+				var pwd=document.getElementById("txtpassword").value;
+				var usertype=document.getElementById("txtusertype").value;
+				var name=document.getElementById("txtname").value;
+				var status="A";
+			     $.ajax({
+			      type: "POST",
+			      url: 'dal_createuser.php',
+			      data: ({
+			      	param_username:username,
+			      	param_pwd:pwd,
+			      	param_usertype:usertype,
+			      	param_name:name,
+			      	param_status:status}),
+			      success: function(data) {
+			       document.getElementById("div1").innerHTML=data;
+			      } 
+			    }); 
+			    });   
+		});
+	</script>
+</head>
+<body>
+	<form method="POST">
+		<table border="1">
+			 <tr>
+				<td>Username</td>
+				<td><input type="text" name="txtusername" id="txtusername"/>
+			</tr>
+			
+			 <tr>
+				<td>Password</td>
+				<td><input type="password" name="txtpassword" id="txtpassword"/>
+			</tr>
+			
+			 <tr>
+				<td>Usertype</td>
+				<td><input type="text" name="txtusertype" id="txtusertype"/>
+			</tr>
+			
+			 <tr>
+				<td>Name</td>
+				<td><input type="text" name="txtname" id="txtname"/>
+			</tr>
+			<tr>
+				<td><input type="button" name="btnadd" id="btnadd" value="submit" />
+			</tr>
+		</table>
+	</form>
+	<div id="div1">
+	</div>
+</body>
+</html>

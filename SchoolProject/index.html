@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<!--  Bootstrap Core CSS  -->
+
+
+
+</head>
+<body>
+
+	<aside class="sidebar-left-collapse">
+		<div class="sidebar-links">
+			<div class="link-green">
+				<a href="#"><i>User</i></a>
+				<ul class ="sub-links">
+					<li><a href="createuser.html">Create User</a></li>
+					<li><a href="viewusers.html">View Users</a></li>
+					<li><a href="#/BlockUser">Delete User</a></li>
+				</ul>
+				<a href="#"><i>Subject</i></a>
+				<ul class="sub-links">
+					<li><a href="addsubject.html">Add Subject</a></li>
+					<li><a href="viewsubjects.html">Show Subject</a></li>
+				</ul>
+			</div>
+		</div>
+	</aside>
+
+	<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+	<script type="text/javascript">
+		$(function ()
+		{
+			var links=$('.sidebar-links > div');
+			links.on('click', function()
+			{
+				links.removeClass('selected');
+				$(this).addClass('selected');
+			});
+		});
+	</script>
+</body>
+</html>

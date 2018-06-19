@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Add New Subject</title>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+	<script>
+		$(document).ready(function(){
+			$("#btnadd").click(function(){
+				var subject_code=document.getElementById("txtsubjectcode").value;
+				var subject_name=document.getElementById("txtsubjectname").value;
+				var subject_category=document.getElementById("ddlcat").value;
+				 $.ajax({
+			      type: "POST",
+			      url: 'dal_addsubject.php',
+			      data: ({
+			      	param_subjectcode:subject_code,
+			      	param_subjectname:subject_name,
+			      	param_subjectcat:subject_category
+			      }),
+			      success: function(data) {
+			       document.getElementById("div1").innerHTML=data;
+			      } 
+			    }); 
+			    });   
+		});
+	</script>
+
+</head>
+<body>
+	<h1>Add New Subject</h1>
+	<form method="POST">
+		<table border="1">
+			 <tr>
+				<td>Subject Code</td>
+				<td><input type="text" name="txtsubjectcode" id="txtsubjectcode"/>
+			</tr>
+			
+			 <tr>
+				<td>Subject Name</td>
+				<td><input type="text" name="txtsubjectname" id="txtsubjectname"/>
+			</tr>
+
+			 <tr>
+				<td>Subject Category</td>
+				<td>
+					<select name="ddlcat" id="ddlcat"> 
+						<option value="L">Language</option>
+						<option value="O">Other</option>
+					</select>
+				</td>
+			</tr>
+
+			<tr>
+				<td><input type="button" name="btnadd" id="btnadd" value="submit" />
+			</tr>
+		</table>
+	</form>
+	<div id="div1">
+	</div>
+</body>
+</html>
