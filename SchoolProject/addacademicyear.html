@@ -1,12 +1,68 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Add User</title>
+	<title>Add Academic Year</title>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-	<script>
-		$(document).ready(function(){
+</head>
+<body>
+	<center><h1>Add Academic Year</h1></center>
+	<form method="POST">
+		<table border="1" align="center">
+			 <tr>
+				<td>Academic Year</td>
+				<td><select name="ddlacademicyear" id="ddlacademicyear">		
+				</select>
+			</tr>
+			
+			 <tr>
+				<td>Start Date</td>
+				<td><input type="date" name="txtstartdate" id="txtstartdate"/>
+			</tr>
+			
+			 <tr>
+				<td>End Date</td>
+				<td><input type="date" name="txtenddate" id="txtenddate"/>
+			</tr>
+			
+			 <tr>
+				<td><input type="button" name="btnadd" id="btnadd" value="submit" />
+			</tr>
+		</table>
+	</form>
+	<br>
+	<center><font color="red">
+
+	<div id="div1">
+		<!-- result -->
+	</div>
+	</font></center>
+	<script type="text/javascript">
+		//changes done by shashi
+		 	$(document).ready(function(){
+			//load academic year into dropdown starting from 1970 to currentyear
+			var today = new Date();
+			var mm = today.getMonth()+1;  
+			var yyyy = today.getFullYear()
+			var ddlacademicyear=document.getElementById("ddlacademicyear")
+			for(var i=1970;i<=yyyy;i++)
+			{
+				//generate academic year as : 1970-1971
+				var fromyear=i.toString();
+				var toyear=(i+1).toString();
+				var academicyear=fromyear+"-"+toyear;
+
+				//add academicyear dynamically to dropdownlist
+				var option=document.createElement("option");
+				 
+				option.value=academicyear;
+				option.text=academicyear;
+				
+				ddlacademicyear.appendChild(option);
+			}
+
+			//post data to dal_academic_year to insert row into academicyear table
 			$("#btnadd").click(function(){
-				var academicyear=document.getElementById("txtacademicyear").value;
+				var academicyear=document.getElementById("ddlacademicyear").value;
 				var startdate=document.getElementById("txtstartdate").value;
 				var enddate=document.getElementById("txtenddate").value;
 				
@@ -26,31 +82,6 @@
 			    });   
 		});
 	</script>
-</head>
-<body>
-	<form method="POST">
-		<table border="1">
-			 <tr>
-				<td>Academic Year</td>
-				<td><input type="text" name="txtacademicyear" id="txtacademicyear"/>
-			</tr>
-			
-			 <tr>
-				<td>Start Date</td>
-				<td><input type="calander" name="txtstartdate" id="txtstartdate"/>
-			</tr>
-			
-			 <tr>
-				<td>End Date</td>
-				<td><input type="calander" name="txtenddate" id="txtenddate"/>
-			</tr>
-			
-			 <tr>
-				<td><input type="button" name="btnadd" id="btnadd" value="submit" />
-			</tr>
-		</table>
-	</form>
-	<div id="div1">
-	</div>
+
 </body>
 </html>
